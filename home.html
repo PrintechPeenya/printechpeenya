@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Printech</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #000000;
+      --text-light: #fff;
+      --bg-light: #000000;
+      --font-family: 'Montserrat', sans-serif;
+      --highlight: #ffffff;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--primary-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+    .logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+    nav a {
+      margin-left: 2rem;
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+    nav a:hover {
+      background-color: #ffffff;
+      color: #000000;
+    }
+    section {
+      padding: 6rem 2rem 4rem;
+    }
+    #services, #about, #contact {
+      background-color: var(--primary-color);
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .service {
+      background-color: #1c1c1c;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(255,255,255,0.05);
+      padding-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .service:hover {
+      transform: translateY(-5px);
+    }
+    .service img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .service img:hover {
+      transform: scale(1.05);
+    }
+    .service h3 {
+      margin: 1rem 0 0.5rem;
+    }
+    .service button,
+    .brochure-btn,
+    .submit-btn {
+      background-color: #ffffff;
+      color: #000000;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      margin: 1rem auto;
+      cursor: pointer;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .service button:hover,
+    .brochure-btn:hover,
+    .submit-btn:hover {
+      background-color: #f0f0f0;
+    }
+    .brochure-btn {
+      display: block;
+      margin: 0 auto 2rem;
+      text-align: center;
+      text-decoration: none;
+      width: fit-content;
+    }
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+      margin: 1rem 0;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: auto;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 6px;
+      font-family: var(--font-family);
+    }
+    .rating-stars {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .rating-stars i {
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #fff;
+    }
+    .rating-stars i.selected {
+      color: #f8e002;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #000000;
+      color: #ffffff;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      color: #000;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      display: none;
+      z-index: 2000;
+      width: 90%;
+      max-width: 400px;
+    }
+    .popup input[type=number] {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .popup h3 {
+      margin-bottom: 1rem;
+    }
+    .popup .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: red;
+    }
+    .popup p.details {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+.logo-slider-container img {
+      height: 60px;
+      width: auto;
+      margin: 0 1rem;
+    }
+
+    .logo-slider {
+      display: flex;
+      width: max-content;
+    }
+
+    .slide-left, .slide-right {
+      display: flex;
+    }
+
+
+    .slide-right {
+      animation: slide-right 30s linear infinite;
+    }
+
+    .loop {
+      display: flex;
+    }
+
+
+    @keyframes slide-right {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Printech</div>
+    <nav>
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact Us</a>
+    </nav>
+  </header>
+
+  <section id="about" style="padding: 6rem 2rem 4rem; background-color: #111; border-radius: 10px; max-width: 1000px; margin: 6rem auto 2rem;">
+  <div style="max-width: 800px; margin: auto; font-size: 1rem; line-height: 1.6; text-align: center;">
+  <h2 style="text-align: center;color: #ffffff; margin-bottom:2rem;">About Us</h2>
+  <p>
+    At <strong>Printech</strong>, we are dedicated to delivering high-quality printing, plotting, scanning, and document-related services for individuals and businesses. Founded in <strong>2019</strong> and located in <strong>Peenya Industrial Area, Bengaluru</strong>, we have grown into a trusted service provider with a strong reputation for precision, punctuality, and affordability.
+  </p>
+  <br>
+  <p>
+    Our services span a wide range including color and black & white printing, jumbo xerox, blueprint creation, lamination, spiral binding, ISO posters, and more. With a focus on customer satisfaction, we ensure quick turnaround times and the best-in-class materials for every job.
+  </p>
+  <br>
+  <p>
+    Whether you're a student, engineer, architect, designer, or a corporate client — <strong>Printech</strong> is your one-stop solution for all document services under one roof.
+  </p>
+</div>
+</secion>
+
+  <section id="services">
+    <h2 style="text-align:center; color: #ffffff; margin-bottom:2rem;">Our Services</h2>
+    <div class="services">
+      <div class="service"><img src="1.png" alt="Service 1"><h3>Print/Xerox - Colour</h3><button>View Details</button></div>
+      <div class="service"><img src="2.png" alt="Service 2"><h3>Print/Xerox - Black & White</h3><button>View Details</button></div>
+      <div class="service"><img src="3.png" alt="Service 3"><h3>Jumbo Xerox - A0 to A2</h3><button>View Details</button></div>
+      <div class="service"><img src="4.png" alt="Service 4"><h3>Scanning - A0 to A4</h3><button>View Details</button></div>
+      <div class="service"><img src="5.png" alt="Service 5"><h3>Blueprint - A1 & A2</h3><button>View Details</button></div>
+      <div class="service"><img src="6.png" alt="Service 6"><h3>Spiral Binding</h3><button >View Details</button></div>
+      <div class="service"><img src="7.png" alt="Service 7"><h3>Lamination - A3 & A4</h3><button>View Details</button></div>
+      <div class="service"><img src="8.png" alt="Service 8"><h3>ISO Posters - A3 & A4</h3><button>View Details</button></div>
+    </div>
+  </section>
+
+ <section id="about" style="padding: 4rem 2rem; background-color: #111; border-radius: 10px; max-width: 1000px; margin: 2rem auto;">
+
+    <div style="max-width: 800px; margin: auto; font-size: 1rem; line-height: 1.6;"></div>
+    <h2 style="text-align:center; margin-bottom: 1.5rem;">Our Customers</h2><br>
+    <div class="logo-slider-container" style="overflow: hidden; max-width: 1000px; margin: auto;">
+      <div class="logo-slider slide-right">
+        <div class="loop">
+          <img src="logo1.png" alt="Client 1">
+          <img src="logo2.png" alt="Client 2">
+          <img src="logo3.png" alt="Client 3">
+          <img src="logo4.png" alt="Client 4">
+          <img src="logo5.png" alt="Client 5">
+          <img src="logo6.png" alt="Client 6">
+          <img src="logo7.png" alt="Client 7">
+          <img src="logo8.png" alt="Client 8">
+          <img src="logo9.png" alt="Client 9">
+          <img src="logo10.png" alt="Client 10">
+          <img src="logo11.png" alt="Client 11">
+          <img src="logo12.png" alt="Client 12">
+          <img src="logo13.png" alt="Client 13">
+          <img src="logo14.png" alt="Client 14">
+          <img src="logo15.png" alt="Client 15">
+        </div>
+        <div class="loop">
+          <img src="logo1.png" alt="Client 1">
+          <img src="logo2.png" alt="Client 2">
+          <img src="logo3.png" alt="Client 3">
+          <img src="logo4.png" alt="Client 4">
+          <img src="logo5.png" alt="Client 5">
+          <img src="logo6.png" alt="Client 6">
+          <img src="logo7.png" alt="Client 7">
+          <img src="logo8.png" alt="Client 8">
+          <img src="logo9.png" alt="Client 9">
+          <img src="logo10.png" alt="Client 10">
+          <img src="logo11.png" alt="Client 11">
+          <img src="logo12.png" alt="Client 12">
+          <img src="logo13.png" alt="Client 13">
+          <img src="logo14.png" alt="Client 14">
+          <img src="logo15.png" alt="Client 15">
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <section id="contact" style="background-color: #111; padding: 4rem 2rem; border-radius: 10px; max-width: 1000px; margin: auto;">
+    <h2 style="text-align:center;">Contact Us</h2>
+    <div style="text-align: center; padding: 1rem 0;">
+      <p><strong>Mobile No:</strong> 8722842322 &nbsp; | &nbsp; <strong>Email:</strong> printechpeenya@gmail.com</p>
+      <p><strong>Address:</strong> PIA CLUSTER, near Peenya NTTF Circle Park, Ganapathy Nagar, KIADB PARK, Peenya, Bengaluru, Karnataka 560058</p>
+    </div>
+    <div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3891.365951397497!2d77.511772!3d13.025106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1720180285000!5m2!1sen!2sin" allowfullscreen style="width: 100%; height: 300px; border: 0;"></iframe>
+    </div>
+    <div style="margin: 2rem auto 0; max-width: 600px;">
+      <h3 style="text-align: center; margin-bottom: 1rem;">Leave a Message</h3>
+      <form class="contact-form" action="https://formspree.io/f/mrbkrean" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="4" placeholder="Leave a comment..." required></textarea>
+        <div class="rating-stars" style="text-align: center;">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <input type="hidden" name="rating" id="ratingInput">
+        <button class="submit-btn" type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+
+
+  <footer>
+    &copy; 2025 Printech. All rights reserved.
+  </footer>
+
+  <div class="popup" id="popup">
+    <span class="close" onclick="closePopup()">&times;</span>
+    <h3 id="popupTitle">Service Details</h3>
+    <p class="details" id="popupDetails"></p>
+    <div id="fareSection" style="display: none;">
+      
+    </div>
+  </div>
+
+  <script>
+    const stars = document.querySelectorAll('.rating-stars i');
+    const ratingInput = document.getElementById('ratingInput');
+    stars.forEach((star, index) => {
+      star.addEventListener('click', () => {
+        stars.forEach((s, i) => s.classList.toggle('selected', i <= index));
+        ratingInput.value = index + 1;
+      });
+    });
+
+   const serviceData = {
+  "Print/Xerox - Colour": {
+    details: "<strong>Available Sizes:</strong> A4, A3<br><strong>Type:</strong> Glossy, Matte",
+    fare: false
+  },
+  "Print/Xerox - Black & White": {
+    details: "<strong>Available Sizes:</strong> A4, A3<br><strong>Type:</strong> Plain, Recycled",
+    fare: false
+  },
+  "Jumbo Xerox - A0 to A2": {
+    details: "<strong>Available Sizes:</strong> A0, A1, A2<br><strong>Output:</strong> Plan Prints, Drawings",
+    fare: false
+  },
+  "Scanning - A0 to A4": {
+    details: "<strong>Available Sizes:</strong> A0 to A4<br><strong>Format:</strong> PDF, JPG",
+    fare: false
+  },
+  "Blueprint - A1 & A2": {
+    details: "<strong>Available Sizes:</strong> A1, A2<br><strong>Usage:</strong> Engineering Drawings",
+    fare: false
+  },
+  "Spiral Binding": {
+    details: "<strong>Available Sizes:</strong> A4, A3<br><strong>Binding Type:</strong> Plastic, Wire",
+    fare: true
+  },
+  "Lamination - A3 & A4": {
+    details: "<strong>Available Sizes:</strong> A3, A4<br><strong>Finish:</strong> Glossy, Matte",
+    fare: false
+  },
+  "ISO Posters - A3 & A4": {
+    details: "<strong>Available Sizes:</strong> A3, A4<br><strong>Type:</strong> 5s posters, Quality & safety posters",
+    fare: false
+  }
+};
+
+
+    function openPopup(serviceName) {
+      const popup = document.getElementById('popup');
+      document.getElementById('popupTitle').innerText = serviceName;
+      document.getElementById('popupDetails').innerHTML = serviceData[serviceName].details;
+      document.getElementById('fareSection').style.display = serviceData[serviceName].fare ? 'block' : 'none';
+      popup.style.display = 'block';
+    }
+
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+
+    function calculateFare() {
+      const quantity = parseInt(document.getElementById('quantity').value) || 0;
+      const rate = parseFloat(document.getElementById('rate').value) || 0;
+      document.getElementById('totalFare').innerText = quantity * rate;
+    }
+
+    document.querySelectorAll('.service button').forEach(button => {
+      button.addEventListener('click', function() {
+        const serviceName = this.parentElement.querySelector('h3').innerText;
+        openPopup(serviceName);
+      });
+    });
+    </script>
+</body>
+</html>
